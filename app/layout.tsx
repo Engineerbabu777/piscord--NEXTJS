@@ -5,6 +5,7 @@ import { ClerkProvider } from '@clerk/nextjs'
 import { ThemeProvider } from '@/components/providers/theme-provider'
 import { cn } from '@/lib/utils'
 import { ModalProvider } from '@/components/providers/modal-provider'
+import { SocketProvider } from '@/components/providers/socket-provider'
 const inter = Open_Sans({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -19,22 +20,17 @@ export default function RootLayout ({
 }>) {
   return (
     <html lang='en' suppressHydrationWarning>
-      <body className={
-        cn(inter.className,
-        "bg-white dark:bg-[#313131]"
-        )}>
+      <body className={cn(inter.className, 'bg-white dark:bg-[#313131]')}>
         <ThemeProvider
-        attribute="class"
-        defaultTheme="dark"
-        enableSystem={false}
-        storageKey="piscord-theme"
+          attribute='class'
+          defaultTheme='dark'
+          enableSystem={false}
+          storageKey='piscord-theme'
         >
-
           <ClerkProvider>
-          <ModalProvider />
+            <ModalProvider />
 
-            {children}
-
+            <SocketProvider>{children}</SocketProvider>
           </ClerkProvider>
         </ThemeProvider>
       </body>
