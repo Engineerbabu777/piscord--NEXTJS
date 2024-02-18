@@ -51,7 +51,7 @@ export const ServerSearch = ({
       return router.push(`/servers/${params?.serverId}/conversations/${id}`)
     }
 
-    if (type === "channel") {
+    if (type ===c "channel") {
       return router.push(`/servers/${params?.serverId}/channels/${id}`)
     }
   }
