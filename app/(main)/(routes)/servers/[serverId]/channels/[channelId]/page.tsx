@@ -6,7 +6,7 @@ import { currentProfile } from "@/lib/current-profile";
 import { ChatHeader } from "@/components/chat/chat-header";
 import { ChatInput } from "@/components/chat/chat-input";
 import { ChatMessages } from "@/components/chat/chat-messages";
-// import { MediaRoom } from "@/components/media-room";
+import { MediaRoom } from "@/components/media-room";
 import { db } from "@/lib/db";
 
 interface ChannelIdPageProps {
@@ -30,6 +30,8 @@ const ChannelIdPage = async ({
       id: params.channelId,
     },
   });
+
+  console.log({channel})
 
   const member = await db.member.findFirst({
     where: {
@@ -76,20 +78,20 @@ const ChannelIdPage = async ({
           />
         </>
       )}
-      {/* {channel.type === ChannelType.AUDIO && (
+      {channel.type === ChannelType.AUDIO && (
         <MediaRoom
           chatId={channel.id}
           video={false}
           audio={true}
         />
-      )} */}
-      {/* {channel.type === ChannelType.VIDEO && (
+      )}
+      {channel.type === ChannelType.VIDEO && (
         <MediaRoom
           chatId={channel.id}
           video={true}
           audio={true}
         />
-      )} */}
+      )}
     </div>
    );
 }
